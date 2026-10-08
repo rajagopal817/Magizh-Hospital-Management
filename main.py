@@ -1,5 +1,5 @@
 """
-Magizh Hospital Management System
+Makizh Hospital Management System
 ---------------------------------
 Python desktop application (Tkinter + SQLite) built with the MVC pattern:
 

@@ -12,6 +12,7 @@ from views.patient_view import PatientView
 from views.doctor_view import DoctorView
 from views.appointment_view import AppointmentView
 from views.report_view import ReportView
+from views.coming_soon_view import ComingSoonView
 
 
 class MainView:
@@ -43,7 +44,13 @@ class MainView:
         self.patients = PatientView(self.tabs, on_change=self.refresh_all)
         self.doctors = DoctorView(self.tabs, on_change=self.refresh_all)
         self.appointments = AppointmentView(self.tabs, on_change=self.refresh_all)
-        self.reports = ReportView(self.tabs)
+        if config.DEMO_MODE:
+            self.reports = ComingSoonView(
+                self.tabs, "Reports",
+                "Appointment summaries and patient history reports\n"
+                "will be available in the full version.")
+        else:
+            self.reports = ReportView(self.tabs)
 
         self.tabs.add(self.dashboard.frame, text="  Dashboard  ")
         self.tabs.add(self.patients.frame, text="  Patients  ")

@@ -1,7 +1,13 @@
-# Magizh Hospital Management System
+# Makizh Hospital Management System
 
 A Python desktop application for managing patients, doctors and appointments,
 built with **Tkinter** (screens) and **SQLite** (database) using the **MVC pattern**.
+
+## Demo version
+`config.py` has a setting `DEMO_MODE`:
+- `True` (demo): screens are filled with anonymous sample data, forms can be filled
+  and **Save** shows a success message, but nothing is stored. Reports shows "Coming soon".
+- `False` (full version): all data is saved in `hospital.db`.
 
 ## Features
 - Admin login

@@ -1,0 +1,19 @@
+# Database (contains real patient data - never upload)
+hospital.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# PyInstaller build output
+build/
+dist/
+*.spec
+
+# Virtual environment
+venv/
+.venv/
+
+# Editor / OS files
+.vscode/
+Thumbs.db

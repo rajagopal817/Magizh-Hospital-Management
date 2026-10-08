@@ -1,5 +1,5 @@
 """
-Surya Hospital Management System
+Magizh Hospital Management System
 ---------------------------------
 Python desktop application (Tkinter + SQLite) built with the MVC pattern:
 

@@ -9,7 +9,7 @@ import os
 import sys
 
 # ---------------- Hospital details ----------------
-HOSPITAL_NAME = "Surya Hospital"
+HOSPITAL_NAME = "Makizh Hospital"
 APP_TITLE = HOSPITAL_NAME + " - Hospital Management System"
 
 DEPARTMENTS = ["General Medicine", "Cardiology", "Orthopedics",

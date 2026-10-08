@@ -1,4 +1,4 @@
-# Surya Hospital Management System
+# Magizh Hospital Management System
 
 A Python desktop application for managing patients, doctors and appointments,
 built with **Tkinter** (screens) and **SQLite** (database) using the **MVC pattern**.

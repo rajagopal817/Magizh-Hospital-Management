@@ -97,8 +97,7 @@ class AppointmentView:
             messagebox.showinfo(title, message)
             return
         if messagebox.askyesno("Cancel Appointment", f"Cancel appointment ID {appointment_id}?"):
-            title, message = AppointmentController.cancel(appointment_id)
-            messagebox.showinfo(title, message)
+            AppointmentController.cancel(appointment_id)
             self.on_change()
 
     def load_appointments(self):

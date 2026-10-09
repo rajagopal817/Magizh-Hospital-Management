@@ -51,4 +51,3 @@ def button(parent, text, command, color=config.PRIMARY):
     return tk.Button(parent, text=text, command=command, bg=color, fg=config.WHITE,
                      font=("Segoe UI", 10, "bold"), relief="flat",
                      padx=12, pady=4, cursor="hand2")
-

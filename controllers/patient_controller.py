@@ -3,11 +3,8 @@ controllers/patient_controller.py
 ---------------------------------
 Patient registration rules and search.
 Every method that changes data returns (success, title, message).
-In demo mode (config.DEMO_MODE) inputs are checked and a success message
-is shown, but nothing is stored.
 """
 
-import config
 from models.patient import Patient
 
 
@@ -23,12 +20,6 @@ class PatientController:
             return False, "Invalid Age", "Please enter a valid age (1-119)."
         if not contact.isdigit() or len(contact) != 10:
             return False, "Invalid Contact", "Contact number must be 10 digits."
-
-        # ---- Demo version: confirm only, do not store ----
-        if config.DEMO_MODE:
-            return True, "Patient Saved", (
-                "Patient details saved successfully!\n\n"
-                f"Name : {name}\nAge : {age}\nContact : {contact}")
 
         # ---- Save ----
         new_id = Patient.add(name, int(age), gender, contact,

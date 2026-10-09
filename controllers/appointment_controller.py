@@ -3,11 +3,8 @@ controllers/appointment_controller.py
 -------------------------------------
 Booking rules: valid date/time, no past dates, no double booking.
 Every method that changes data returns (success, title, message).
-In demo mode (config.DEMO_MODE) inputs are checked and a success message
-is shown, but nothing is stored.
 """
 
-import config
 from datetime import date
 from models.appointment import Appointment
 from models.doctor import Doctor
@@ -35,18 +32,14 @@ class AppointmentController:
             return False, "Slot Not Available", ("This doctor already has an appointment "
                                                  "at that time.\nPlease choose another time.")
 
+        # ---- Save ----
         doctor_name, department = Doctor.get_name_and_department(doctor_id)
         patient_name = Patient.get_name(patient_id)
-
-        # ---- Save (skipped in the demo version) ----
-        id_line = ""
-        if not config.DEMO_MODE:
-            new_id = Appointment.add(patient_id, doctor_id, department,
-                                     app_date, app_time, reason.strip())
-            id_line = f"Appointment ID : {new_id}\n"
+        new_id = Appointment.add(patient_id, doctor_id, department,
+                                 app_date, app_time, reason.strip())
         return True, "Appointment Confirmed", (
             "Appointment booked successfully!\n\n"
-            f"{id_line}"
+            f"Appointment ID : {new_id}\n"
             f"Patient : {patient_id} - {patient_name}\n"
             f"Doctor : {doctor_id} - {doctor_name}\n"
             f"Department : {department}\n"
@@ -61,10 +54,7 @@ class AppointmentController:
 
     @staticmethod
     def cancel(appointment_id):
-        """Cancel an appointment. Returns (title, message) for the popup."""
-        if not config.DEMO_MODE:
-            Appointment.cancel(appointment_id)
-        return "Cancelled", f"Appointment ID {appointment_id} cancelled successfully."
+        Appointment.cancel(appointment_id)
 
     @staticmethod
     def list_appointments(view):

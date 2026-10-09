@@ -8,13 +8,6 @@ Change the hospital name, colours or departments here.
 import os
 import sys
 
-# ---------------- Demo mode ----------------
-# True  = demo version: screens are filled with anonymous sample data.
-#         Forms can be filled and "Save" shows a success message,
-#         but NOTHING is stored. The Reports module shows "Coming soon".
-# False = full version: all data is saved in hospital.db.
-DEMO_MODE = True
-
 # ---------------- Hospital details ----------------
 HOSPITAL_NAME = "Makizh Hospital"
 APP_TITLE = HOSPITAL_NAME + " - Hospital Management System"

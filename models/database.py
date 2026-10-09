@@ -8,33 +8,17 @@ import sqlite3
 import config
 
 
-# In demo mode the database lives only in memory (RAM), so nothing is
-# written to disk. One connection is kept open for the whole session,
-# because an in-memory database disappears when its connection closes.
-_demo_connection = None
-
-
-def get_connection():
-    global _demo_connection
-    if config.DEMO_MODE:
-        if _demo_connection is None:
-            _demo_connection = sqlite3.connect(":memory:")
-        return _demo_connection
-    return sqlite3.connect(config.DB_PATH)
-
-
 def run_query(sql, params=(), fetch=False):
     """Run one SQL statement.
     fetch=True  -> returns the rows (for SELECT)
     fetch=False -> returns the id of the new row (for INSERT/UPDATE)
     """
-    conn = get_connection()
+    conn = sqlite3.connect(config.DB_PATH)
     cur = conn.cursor()
     cur.execute(sql, params)
     result = cur.fetchall() if fetch else cur.lastrowid
     conn.commit()
-    if not config.DEMO_MODE:
-        conn.close()
+    conn.close()
     return result
 
 
@@ -87,16 +71,11 @@ def setup_database():
     # Sample doctors so the demo is not empty
     if not run_query("SELECT * FROM doctors", fetch=True):
         sample = [
-            ("Doctor 1", "General Medicine", "MBBS, MD", "98XXXXX111", "Mon-Sat"),
-            ("Doctor 2", "Cardiology", "MD, DM Cardiology", "98XXXXX222", "Mon-Fri"),
-            ("Doctor 3", "Orthopedics", "MS Ortho", "98XXXXX333", "Tue-Sat"),
-            ("Doctor 4", "Pediatrics", "MD Pediatrics", "98XXXXX444", "Mon-Sat"),
+            ("Dr. Arun Kumar", "General Medicine", "MBBS, MD", "9840011111", "Mon-Sat"),
+            ("Dr. Priya Raman", "Cardiology", "MD, DM Cardiology", "9840022222", "Mon-Fri"),
+            ("Dr. Senthil Nathan", "Orthopedics", "MS Ortho", "9840033333", "Tue-Sat"),
+            ("Dr. Meena Lakshmi", "Pediatrics", "MD Pediatrics", "9840044444", "Mon-Sat"),
         ]
         for d in sample:
             run_query("""INSERT INTO doctors (name, department, specialization,
                          contact, available_days) VALUES (?, ?, ?, ?, ?)""", d)
-
-    # Demo version: fill every screen with sample data
-    if config.DEMO_MODE:
-        from models.demo_data import load_demo_data
-        load_demo_data()

@@ -1,0 +1,17 @@
+[project]
+name = "makizh-ppg-mobile"
+version = "1.0.0"
+description = "Real-Time Smart Sensor and PPG Data Analytics - Android app (Makizh Tech)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Makizh Tech" }]
+dependencies = ["flet==1.0.4"]
+
+[tool.flet]
+org = "com.makizhtech"
+product = "Makizh PPG Analytics"
+company = "Makizh Tech"
+copyright = "Copyright (C) 2026 Makizh Tech"
+
+[tool.flet.app]
+path = "src"

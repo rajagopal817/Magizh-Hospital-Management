@@ -1,0 +1,2 @@
+# Run the app on a PC and build the Android .apk
+flet[all]==1.0.4
